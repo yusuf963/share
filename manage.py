@@ -5,8 +5,9 @@ import sys
 def main():
     if os.environ.get('DJANGO_DEV_ENV'):
         platform ='core.settings.local'
-        print('running local enviroment')
+        print('running local environment')
     else:
+        print('running prod environment')
         platform ='core.settings.prod'
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', platform)
     try:

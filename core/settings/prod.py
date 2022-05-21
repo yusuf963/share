@@ -1,7 +1,7 @@
 import os
 from .base import *
 
-SECRET_KEY = get_secret('DJANGO_SECTRET_KEY')
+SECRET_KEY = get_secret('DJANGO_SECRET_KEY')
 DEBUG = False
 ALLOWED_HOSTS = ["*"]
 
