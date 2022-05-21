@@ -11,15 +11,19 @@ class Item(models.Model):
     )
     name = models.CharField(max_length=100)
     category = models.ForeignKey('Category', on_delete=models.CASCADE)
-    description = models.TextField()
+    description = models.TextField(max_length=500,null=True, blank=True)
     state = models.CharField(max_length=1, choices=choise, default='1')
-    retail_price = models.DecimalField(max_digits=6, decimal_places=2)
-    image = models.ImageField(upload_to='items/')
+    retail_price = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
+    hero_image = models.ImageField(upload_to='items/' )
+    image1 = models.ImageField(upload_to='items/',null=True, blank=True)
+    image2 = models.ImageField(upload_to='items/',null=True, blank=True)
+    image3 = models.ImageField(upload_to='items/',null=True, blank=True)
+    image4 = models.ImageField(upload_to='items/',null=True, blank=True)
     is_available = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    rate = models.IntegerField(default=0)
+    rate = models.IntegerField(default=0, null=True, blank=True)
     class Meta:
         verbose_name = 'Item'
         verbose_name_plural = 'Items'
