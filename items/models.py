@@ -1,0 +1,40 @@
+from django.db import models
+from django.contrib.auth.models import User
+
+class Item(models.Model):
+    choise =(
+        ('1', '1'),
+        ('2', '2'),
+        ('3', '3'),
+        ('4', '4'),
+        ('5', '5'),
+    )
+    name = models.CharField(max_length=100)
+    category = models.ForeignKey('Category', on_delete=models.CASCADE)
+    description = models.TextField()
+    state = models.CharField(max_length=1, choices=choise, default='1')
+    retail_price = models.DecimalField(max_digits=6, decimal_places=2)
+    image = models.ImageField(upload_to='items/')
+    is_available = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    rate = models.IntegerField(default=0)
+    class Meta:
+        verbose_name = 'Item'
+        verbose_name_plural = 'Items'
+    def __str__(self):
+        return self.name
+
+
+class Category(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+    color_tag = models.CharField(max_length=7, default='#000000')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    class Meta:
+        verbose_name = 'Category'
+        verbose_name_plural = 'Categories'
+    def __str__(self):
+        return self.name
