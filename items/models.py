@@ -12,7 +12,7 @@ class Item(models.Model):
     name = models.CharField(max_length=100)
     category = models.ForeignKey('Category', on_delete=models.CASCADE)
     description = models.TextField(max_length=500,null=True, blank=True)
-    item_state = models.CharField(max_length=1, choices=choice, default='1')
+    item_condition = models.CharField(max_length=1, choices=choice, default='1')
     retail_price = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
     hero_image = models.ImageField(upload_to='photos/items/%Y/%m/%d/' )
     image1 = models.ImageField(upload_to='photos/items/%Y/%m/%d/',null=True, blank=True)
@@ -21,12 +21,12 @@ class Item(models.Model):
     image4 = models.ImageField(upload_to='photos/items/%Y/%m/%d/',null=True, blank=True)
     is_public = models.BooleanField(default=False)
     is_available = models.BooleanField(default=True)
-    Address = models.ForeignKey(User, on_delete=models.CASCADE, related_name='items')
+    # Address = models.ForeignKey(User, on_delete=models.CASCADE, related_name='items')
     door_number= models.CharField(max_length=10,null=True, blank=True)
     postcode = models.CharField(max_length=10, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    # owner = models.ForeignKey(User, on_delete=models.CASCADE)
     rate = models.IntegerField(default=0, null=True, blank=True)
     class Meta:
         verbose_name = 'Item'

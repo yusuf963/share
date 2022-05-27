@@ -13,13 +13,6 @@ def get_secret(setting, secrets=secrets):
         return secrets[setting]
     except KeyError:
         raise ImproperlyConfigured("Set the {} setting".format(setting))
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
-
-# SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-
-# ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -32,7 +25,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'items',
-    'contracts'
+    'share_contracts',
+    'users' # This is custom user model
 ]
 
 MIDDLEWARE = [
@@ -64,6 +58,11 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'core.wsgi.application'
+
+"""
+register  my custom user model
+"""
+AUTH_USER_MODEL = 'users.User'
 
 
 # Password validation
