@@ -2,9 +2,9 @@ from django.contrib import admin
 from .models import Item, Category
 
 class ItemAdmin(admin.ModelAdmin):
-    list_display = ('name', 'category', 'item_state', 'owner', 'rate')
-    list_display_links = ('name', 'category', 'item_state', 'owner', 'rate')
-    list_filter = ('category','name', 'item_state', 'owner')
+    list_display = ('name', 'category', 'item_condition', 'rate')
+    list_display_links = ('name', 'category', 'item_condition', 'rate')
+    list_filter = ('category','name', 'item_condition')
     search_fields = ('name', 'category__name')
     list_per_page = 25
 
