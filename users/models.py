@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
+from .utility.city_selection import city_selection
 
 class MyUserManager(BaseUserManager):
     def create_user(self, email,username,first_name,last_name, password=None):
@@ -19,10 +20,11 @@ class MyUserManager(BaseUserManager):
         )
 
         user.set_password(password)
+        # user.set_unusable_password()
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email,username, first_name, last_name, password):
+    def create_superuser(self, email, username, first_name, last_name, password):
         """
         Creates and saves a superuser with the given email and password.
         """
@@ -47,12 +49,13 @@ class User(AbstractBaseUser):
     first_name = models.CharField(max_length=50, null=True, blank=True)
     last_name = models.CharField(max_length=50, null=True, blank=True)
     phone_number = models.CharField(max_length=20, null=True, blank=True)
+    city = models.CharField(max_length=50, choices=city_selection, null=True, blank=True, default='LOND')
     address = models.CharField(max_length=100, null=True, blank=True)
     postcode = models.CharField(max_length=10, null=True, blank=True)
     door_number = models.CharField(max_length=10, null=True, blank=True)
     latitude = models.CharField(max_length=20,null=True, blank=True)
     longitude = models.CharField(max_length=20,null=True, blank=True)
-    reduced_carbon_savings = models.FloatField(default=0)
+    reduced_carbon_emission = models.FloatField(default=0)
 # REQUIRED_FIELDS FOR the default USER MODEL
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
