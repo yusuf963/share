@@ -1,43 +1,15 @@
 from django.db import models
 from django.conf import settings
-from typing import Type, TypeVar
-import os
-import binascii
+from general_utility.token_generator import generate_model_code
 from tinymce import models as tinymce_models
 
 
-# # Generate token
-# def generate_token(size: int):
-#     token = binascii.hexlify(os.urandom(size)).decode()
-#     if len(token) > size:
-#         return token[0:size].upper()
-#     else:
-#         return token.upper()
-
-# M = TypeVar('M', bound=models.Model)
-
-
-# def generate_model_code(cls: Type[M], min_size: int = 5, code_field: str = 'code'):
-#     size = min_size
-#     code = generate_token(size)
-#     while cls.objects.filter(**{code_field: code}).exists():
-#         size += 1
-#         code = generate_token(size)
-#     return code
-
-
-# def generate_model_code(cls: Type[M], min_size: int = 5, code_field: str = 'code'):
-#     size = min_size
-#     code = generate_token(size)
-#     while cls.objects.filter(**{code_field: code}).exists():
-#         size += 1
-#         code = generate_token(size)
-#     return code
-# def generate_blog_post_code():
-#     return generate_model_code(BlogPost, 5)
+#Generate token
+def generate_blog_post_code():
+    return f"BLO_{generate_model_code(BlogPost, 5)}"
 
 class BlogPost(models.Model):
-    code = models.CharField(max_length=100, unique=True)
+    code = models.CharField(max_length=100, unique=True ,default=generate_blog_post_code)
     title = models.CharField(max_length=355)
     short_title = models.CharField(max_length=200, null=True, blank=False)
     publish_date = models.DateTimeField()
@@ -55,3 +27,5 @@ class BlogPost(models.Model):
 
     def pub_date_pretty(self):
         return self.publish_date.strftime('%b %e %Y')
+
+

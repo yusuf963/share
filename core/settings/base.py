@@ -28,8 +28,8 @@ INSTALLED_APPS = [
     'items',
     'share_contracts',
     'users', # This is custom user model
-    # 'blogs'
-    'articles'
+    'articles',
+    'blogs',
 ]
 
 MIDDLEWARE = [
