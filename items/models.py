@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.conf import settings
 
 class Item(models.Model):
     choice =(
@@ -21,12 +21,12 @@ class Item(models.Model):
     image4 = models.ImageField(upload_to='photos/items/%Y/%m/%d/',null=True, blank=True)
     is_public = models.BooleanField(default=False)
     is_available = models.BooleanField(default=True)
-    # Address = models.ForeignKey(User, on_delete=models.CASCADE, related_name='items')
+    address = models.CharField(max_length=100, null=True, blank=True)
     door_number= models.CharField(max_length=10,null=True, blank=True)
     postcode = models.CharField(max_length=10, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    # owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     rate = models.IntegerField(default=0, null=True, blank=True)
     class Meta:
         verbose_name = 'Item'

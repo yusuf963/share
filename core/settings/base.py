@@ -18,6 +18,7 @@ def get_secret(setting, secrets=secrets):
 # Application definition
 
 INSTALLED_APPS = [
+    'tinymce',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -26,7 +27,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'items',
     'share_contracts',
-    'users' # This is custom user model
+    'users', # This is custom user model
+    'articles',
+    'blogs',
 ]
 
 MIDDLEWARE = [
@@ -122,3 +125,20 @@ STATIC_ROOT = 'static'
 # EMAIL_PORT = get_secret('EMAIL_PORT')
 # EMAIL_USE_TLS = True
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+TINYMCE_JS_URL = 'http://debug.example.org/tiny_mce/tiny_mce_src.js'
+TINYMCE_DEFAULT_CONFIG = {
+    "theme": "silver",
+    "height": "320px",
+    "width": "960px",
+    "menubar": "file edit view insert format tools table help",
+    "plugins": "advlist autolink lists link image charmap print preview anchor searchreplace visualblocks code "
+    "fullscreen insertdatetime media table paste code help wordcount spellchecker",
+    "toolbar": "undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft "
+    "aligncenter alignright alignjustify | outdent indent |  numlist bullist checklist | forecolor "
+    "backcolor casechange permanentpen formatpainter removeformat | pagebreak | charmap emoticons | "
+    "fullscreen  preview save print | insertfile image media pageembed template link anchor codesample | "
+    "a11ycheck ltr rtl | showcomments addcomment code",
+    "custom_undo_redo_levels": 10,
+    # "language": "es_ES",  # To force a specific language instead of the Django current language.
+}
