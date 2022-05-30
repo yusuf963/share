@@ -14,9 +14,7 @@ def get_secret(setting, secrets=secrets):
     except KeyError:
         raise ImproperlyConfigured("Set the {} setting".format(setting))
 
-
 # Application definition
-
 INSTALLED_APPS = [
     'tinymce',
     'django.contrib.admin',
@@ -86,9 +84,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
-
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
@@ -108,15 +103,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = 'static'
-# Database
-# https://docs.djangoproject.com/en/2.2/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
+# upload to aws S3 bucket
 
 
 # EMAIL_HOST_USER = get_secret('EMAIL_HOST_USER')
