@@ -51,6 +51,7 @@ class User(AbstractBaseUser,PermissionsMixin):
     last_name = models.CharField(max_length=50, null=True, blank=True)
     phone_number = models.CharField(max_length=20, null=True, blank=True)
     city = models.CharField(max_length=50, choices=city_selection, null=True, blank=True, default='LOND')
+    personal_photo = models.ImageField(upload_to='share/photos/users/%Y/%m/%d/',null=True, blank=True)
     address = models.CharField(max_length=100, null=True, blank=True)
     postcode = models.CharField(max_length=10, null=True, blank=True)
     door_number = models.CharField(max_length=10, null=True, blank=True)
