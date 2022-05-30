@@ -9,11 +9,18 @@ def home(request):
         'title': 'Home',
         'body': 'This is the home page'
     }
-    return HttpResponse(f"Items page, {dt}")
+    return HttpResponse(request,f"Items page, {dt}")
 def display_category(request):
     dt = datetime.datetime.now()
     context = {
         'title': 'Category',
         'body': 'This is the category page'
     }
-    return HttpResponse(f"display_category page, {dt}")
+    return HttpResponse(request,f"display_category page, {dt}")
+def display_items(request):
+    dt = datetime.datetime.now()
+    context = {
+        'title': 'Item',
+        'body': 'This is the item page'
+    }
+    return render(request, 'base.html', context)

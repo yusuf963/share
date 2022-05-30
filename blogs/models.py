@@ -1,6 +1,6 @@
 from django.db import models
 from django.conf import settings
-from general_utility.token_generator import generate_model_code
+from _general_utility.token_generator import generate_model_code
 from tinymce import models as tinymce_models
 
 

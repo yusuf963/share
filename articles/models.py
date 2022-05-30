@@ -2,7 +2,7 @@ from django.db import models
 import datetime
 from django.conf import settings
 from tinymce import models as tinymce_models
-from general_utility.token_generator import generate_model_code
+from _general_utility.token_generator import generate_model_code
 
 
 # Generate token

@@ -5,6 +5,10 @@ __pycache__/
 secrets.json
 # C extensions
 *.so
+# static files
+*_assets/
+# *static/
+*.js
 
 # Distribution / packaging
 .Python

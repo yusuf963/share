@@ -2,11 +2,11 @@ import os
 import json
 from django.core.exceptions import ImproperlyConfigured
 
+#BASE_DIR = os.environ.get('SOOK_BASE_DIR', os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 with open(os.path.join(BASE_DIR, 'secrets.json')) as secrets_file:
     secrets = json.load(secrets_file)
-
 def get_secret(setting, secrets=secrets):
     """Get secret setting or fail with ImproperlyConfigured"""
     try:
@@ -45,7 +45,7 @@ ROOT_URLCONF = 'core.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR, 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -102,7 +102,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = 'static'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, '_assets'),
+]
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # upload to aws S3 bucket
 AWS_ACCESS_KEY_ID = get_secret('AWS_ACCESS_KEY_ID')
@@ -137,3 +140,17 @@ TINYMCE_DEFAULT_CONFIG = {
     "custom_undo_redo_levels": 10,
     # "language": "es_ES",  # To force a specific language instead of the Django current language.
 }
+
+# REDIS = {
+#     'host': 'redis',
+#     'port': 6379,
+#     'db': 0
+# }
+#woeker
+# TASKS_BACKEND = 'http'
+# TASKS_URL = 'http://worker:8100'
+# TASKS_ENABLE_VIEWS = False
+# sendgrid
+# EMAIL_HOST = 'smtp.sendgrid.net'
+# EMAIL_HOST_USER = 'apikey'
+# EMAIL_HOST_PASSWORD = None
