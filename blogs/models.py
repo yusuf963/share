@@ -14,10 +14,10 @@ class BlogPost(models.Model):
     short_title = models.CharField(max_length=200, null=True, blank=False)
     publish_date = models.DateTimeField()
     body = tinymce_models.HTMLField()
-    hero_image = models.ImageField(upload_to='photos/blogs/%Y/%m/%d/',null=True, blank=True)
-    image1 = models.ImageField(upload_to='photos/blogs/%Y/%m/%d/',null=True, blank=True)
-    image2 = models.ImageField(upload_to='photos/blogs/%Y/%m/%d/',null=True, blank=True)
-    image3 = models.ImageField(upload_to='photos/blogs/%Y/%m/%d/',null=True, blank=True)
+    hero_image = models.ImageField(upload_to='share/photos/blogs/%Y/%m/%d/',null=True, blank=True)
+    image1 = models.ImageField(upload_to='share/photos/blogs/%Y/%m/%d/',null=True, blank=True)
+    image2 = models.ImageField(upload_to='share/photos/blogs/%Y/%m/%d/',null=True, blank=True)
+    image3 = models.ImageField(upload_to='share/photos/blogs/%Y/%m/%d/',null=True, blank=True)
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.DO_NOTHING, related_name='blogs')
     def __str__(self):
         return self.title
