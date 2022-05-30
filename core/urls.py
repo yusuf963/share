@@ -17,6 +17,11 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('tinymce/', include('tinymce.urls')),
+    # path('tinymce/', include('tinymce.urls')),
+    path('',include('items.urls')),
+    path('articles', include('articles.urls')),
+    path('blogs', include('blogs.urls')),
+    path('users', include('users.urls')),
+    path('items/', include('items.urls')),
     path('admin/', admin.site.urls),
 ]
