@@ -1,10 +1,15 @@
 from django.contrib import admin
-from .models import User
-admin.site.register(User)
+from django.contrib.auth.admin import UserAdmin
+from .models import User as MyUser  # my Custom User Model
+# from django.contrib.auth.models import User
+# admin.site.unregister(User)
 
-class UserAdmin(admin.ModelAdmin):
-    list_display = ('username', 'email', 'first_name', 'last_name', 'is_staff', 'is_superuser')
-    list_display_links = ('username', 'email', 'first_name', 'last_name','is_superuser')
-    list_filter = ('username', 'email', 'first_name', 'last_name', 'is_staff', 'is_superuser')
-    search_fields = ('username', 'email', 'first_name', 'last_name', 'is_staff', 'is_superuser')
+class UserAdmin(UserAdmin):
+    list_display = ('username', 'email')    
+    list_display_links = ('username', 'email')
+    list_filter = ('username', 'email')
+    search_fields = ('username', 'email')
+    ordering = ('username', 'email')
+    fieldsets = ()
     list_per_page = 25
+admin.site.register(MyUser,UserAdmin)
